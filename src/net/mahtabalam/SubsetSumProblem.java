@@ -14,9 +14,9 @@ public class SubsetSumProblem {
 
 	public void solveProblem() {
 
-//		for(int i=0;i<=this.sum;i++){ // if sum is not zero and subset is 0 -> no feasible solution
-//			this.dpTable[0][i] = false;
-//		}
+		for(int j=1; j <=this.sum; j++){ // if sum is not zero and subset is 0 -> no feasible solution
+			this.dpTable[0][j] = false;
+		}
 
 		for (int i = 0; i <= this.numbers.length; i++) { // if sum is 0 then we can make the empty subset to make sum 0
 			this.dpTable[i][0] = true;
@@ -39,16 +39,18 @@ public class SubsetSumProblem {
 		}
 	}
 
-	public void hasSolution() {
+	public boolean hasSolution() {
 
 		if (this.dpTable[numbers.length][sum]) {
-			System.out.println("There is a solution for the problem...");
+			System.out.println("A subset with sum "+ sum + " exists.");
+			return true;
 		} else {
-			System.out.println("No feasible solution for the problem...");
+			System.out.println("No feasible solution");
+			return false;
 		}
 	}
 
-	public void showSums() {
+	public void printSolution() {
 
 		int columnIndex = this.sum;
 		int rowIndex = this.numbers.length;
@@ -58,7 +60,7 @@ public class SubsetSumProblem {
 			if (this.dpTable[rowIndex][columnIndex] == this.dpTable[rowIndex - 1][columnIndex]) {
 				rowIndex = rowIndex - 1;
 			} else {
-				System.out.println("We take item: " + numbers[rowIndex - 1]);
+				System.out.println("We include number: " + numbers[rowIndex - 1]);
 				columnIndex = columnIndex - numbers[rowIndex - 1];
 				rowIndex = rowIndex - 1;
 			}
