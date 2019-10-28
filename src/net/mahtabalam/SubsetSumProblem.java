@@ -25,7 +25,7 @@ public class SubsetSumProblem {
 		for (int rowIndex = 1; rowIndex <= numbers.length; ++rowIndex) {
 			for (int columnIndex = 1; columnIndex <= sum; ++columnIndex) {
 
-				if (columnIndex < numbers[rowIndex - 1]) {
+				if (numbers[rowIndex - 1] > columnIndex  ) {
 					this.dpTable[rowIndex][columnIndex] = this.dpTable[rowIndex - 1][columnIndex];
 				} else {
 					if (this.dpTable[rowIndex - 1][columnIndex]) {
